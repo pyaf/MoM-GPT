@@ -4,7 +4,8 @@ A streamlit based application that creates minutes of the meetings (MoMs) with s
 
 Currently under development, feel free to contribute. 🤝
 
-[!(demo)](tmp/demo.mp4)
+https://user-images.githubusercontent.com/17473589/222925358-70d5872b-05aa-4fa7-836a-e4d33a8751f9.mp4
+
 
 ### Installation 🛠️
 
@@ -20,3 +21,6 @@ The app should open up automatically in your default browser.
 1. https://blog.devgenius.io/creating-meeting-minutes-using-openai-gpt-3-api-f79e5fc15eb1
 2. https://openai.com/
 3. https://github.com/streamlit/streamlit
+
+
+
