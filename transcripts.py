@@ -106,7 +106,11 @@ def break_up_file(tokens, chunk_size, overlap_size):
 def break_up_file_to_chunks(filename, chunk_size=2000, overlap_size=100):
     with open(filename, "r") as f:
         text = f.read()
-    tokens = word_tokenize(text)
+    try:
+        tokens = word_tokenize(text)
+    except Exception as err:
+        print(err)
+        nltk.download('punkt')
     return list(break_up_file(tokens, chunk_size, overlap_size))
 
 
@@ -120,7 +124,7 @@ def save_and_clean_file(uploaded_file):
     # To convert to a string based IO
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filename = uploaded_file.name
-    file_in = f".tmp/{filename}"
+    file_in = f"tmp/{filename}"
     file_out = "".join(file_in.split('.')[:-1]) + "_cleaned.txt"
     # save the file temporarily
     with open(file_in, mode="w") as f:

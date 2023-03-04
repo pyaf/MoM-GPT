@@ -39,7 +39,7 @@ if uploaded_file is not None:
     action_items = get_action_items(filepath)
     status.text("")
     st.markdown("#### Action Items")
-    st.text(action_items)
+    st.markdown(action_items)
     bar.progress(100)
 
     st.markdown("#### Hope it helped!")

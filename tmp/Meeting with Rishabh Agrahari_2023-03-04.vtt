@@ -1,0 +1,63 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:00.680
+<v Rishabh Agrahari>Hi everyone.</v>
+
+00:00:03.830 --> 00:00:09.660
+<v Rishabh Agrahari>Today I'm going to demonstrate how we can use chat GPT.</v>
+
+00:00:11.210 --> 00:00:12.500
+<v Rishabh Agrahari>To summarize our meetings.</v>
+
+00:00:13.170 --> 00:00:14.000
+<v Rishabh Agrahari>Create meeting minutes.</v>
+
+00:00:18.130 --> 00:00:23.180
+<v Rishabh Agrahari>So this app that I've built is using stream lit.</v>
+
+00:00:29.160 --> 00:00:31.480
+<v Rishabh Agrahari>And Open AI API library.</v>
+
+00:00:34.430 --> 00:00:36.340
+<v Rishabh Agrahari>It currently.</v>
+
+00:00:38.350 --> 00:00:40.420
+<v Rishabh Agrahari>Uses the transcription files.</v>
+
+00:00:41.900 --> 00:00:44.970
+<v Rishabh Agrahari>To extract the meeting discussion points.</v>
+
+00:00:46.250 --> 00:00:51.160
+<v Rishabh Agrahari>And then uses Open AI API to summarize.</v>
+
+00:00:51.980 --> 00:00:55.360
+<v Rishabh Agrahari>It can summarize very long meetings.</v>
+
+00:00:59.600 --> 00:01:02.270
+<v Rishabh Agrahari>And can also extract action items.</v>
+
+00:01:04.980 --> 00:01:07.130
+<v Rishabh Agrahari>This app uses chat GPT in the back end.</v>
+
+00:01:09.740 --> 00:01:12.700
+<v Rishabh Agrahari>And the model is text Davinci.</v>
+
+00:01:17.510 --> 00:01:18.830
+<v Rishabh Agrahari>Looks pretty cool.</v>
+
+00:01:20.280 --> 00:01:21.730
+<v Rishabh Agrahari>Yeah. Let me show how it works.</v>
+
+00:01:24.690 --> 00:01:27.840
+<v Rishabh Agrahari>It will be on me to show how it works. I'll give a demo.</v>
+
+00:01:28.570 --> 00:01:33.190
+<v Rishabh Agrahari>As soon as I'm done working on all the features of this application.</v>
+
+00:01:37.490 --> 00:01:39.240
+<v Rishabh Agrahari>I think it should be done within a week.</v>
+
+00:01:42.980 --> 00:01:44.290
+<v Rishabh Agrahari>By next weekend, I mean.</v>
+
+
