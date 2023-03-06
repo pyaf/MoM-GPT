@@ -5,40 +5,49 @@ from io import StringIO
 import datetime
 
 import nltk
+import docx2txt
 import streamlit as st
 from nltk.tokenize import word_tokenize
 
 
-def clean_webvtt(filepath: str) -> str:
+def clean_transcript(filepath: str) -> str:
     """Clean up the content of a subtitle file (vtt) to a string
-
     Args:
         filepath (str): path to vtt file
-
     Returns:
         str: clean content
     """
-    # read file content
-    with open(filepath, "r", encoding="utf-8") as fp:
-        content = fp.read()
+    if filepath.endswith(".vtt"):
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+    elif filepath.endswith(".docx"):
+        content = docx2txt.process(filepath)
+    else:
+        print("Invalid file format.")
+        return
+
+    # replace <v> tags
+    content = content.replace("<v ","").replace(">"," ").replace("</v","")
 
     # remove header & empty lines
     lines = [line.strip() for line in content.split("\n") if line.strip()]
-    lines = lines[1:] if lines[0].upper() == "WEBVTT" else lines
+    lines = lines[1:] if "WEBVTT" in lines[0].upper() else lines
+
 
     # remove indexes
     lines = [lines[i] for i in range(len(lines)) if not lines[i].isdigit()]
 
     # remove tcode
-    #pattern = re.compile(r'^[0-9:.]{12} --> [0-9:.]{12}')
     pattern = r'[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}\/\d+-\d'
-    lines = [lines[i] for i in range(len(lines))
+
+    no_tcode_lines = [lines[i] for i in range(len(lines))
              if not re.match(pattern, lines[i])]
+    if len(no_tcode_lines) < len(lines):
+        st.write("Participant names were found to be encrypted in the transcript file. The app will summarize accordingly.\n")
+        lines = no_tcode_lines
 
     # remove timestamps
-    pattern = r"^\d{2}:\d{2}:\d{2}.\d{3}.*\d{2}:\d{2}:\d{2}.\d{3}$"
-    lines = [lines[i] for i in range(len(lines))
-             if not re.match(pattern, lines[i])]    # remove timestamps
+    lines = [lines[i] for i in range(len(lines)) if "--" not in lines[i]]    # remove timestamps
 
     content = " ".join(lines)
 
@@ -76,7 +85,7 @@ def vtt_to_clean_file(file_in: str, file_out=None, **kwargs) -> str:
             i += 1
             file_out = "%s_%s.txt" % (filename, i)
 
-    content = clean_webvtt(file_in)
+    content = clean_transcript(file_in)
     with open(file_out, "w+", encoding="utf-8") as fp:
         fp.write(content)
     if not no_message:
@@ -122,13 +131,13 @@ def convert_to_prompt_text(tokenized_text):
 @st.cache_data
 def save_and_clean_file(uploaded_file):
     # To convert to a string based IO
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    #stringio = StringIO(uploaded_file.getvalue()).decode("utf-7"))
     filename = uploaded_file.name
     file_in = f"tmp/{filename}"
     file_out = "".join(file_in.split('.')[:-1]) + "_cleaned.txt"
     # save the file temporarily
-    with open(file_in, mode="w") as f:
-        print(stringio.getvalue(), file=f)
+    with open(file_in, mode="wb") as f:
+        f.write(uploaded_file.getvalue())
     filepath = vtt_to_clean_file(file_in, file_out)
     return filepath
 
