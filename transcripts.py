@@ -17,6 +17,8 @@ def clean_transcript(filepath: str) -> str:
     Returns:
         str: clean content
     """
+    special_chars = set(["?",".","!","/",";",":","&","#","@","$",])
+
     if filepath.endswith(".vtt"):
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
@@ -59,7 +61,11 @@ def clean_transcript(filepath: str) -> str:
     pattern = r"([\.!?])(\w)"
     content = re.sub(pattern, r"\1 \2", content)
 
-    return content
+    #filter out special characters and asphotrophe words
+    content = re.sub("'\w+","",content).replace(".","")
+    content = list(filter(lambda ch: ch not in special_chars, content))
+
+    return "".join(content)
 
 
 def vtt_to_clean_file(file_in: str, file_out=None, **kwargs) -> str:

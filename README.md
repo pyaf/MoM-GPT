@@ -16,6 +16,14 @@ https://user-images.githubusercontent.com/17473589/222925358-70d5872b-05aa-4fa7-
 
 The app should open up automatically in your default browser.
 
+### File formats
+
+1. Google meet: Export the meeting transcript as a .docx file
+
+2. Teams: Export the meeting trascript as a .vtt file. How to do it? [Check it out here](https://support.zoom.us/hc/en-us/articles/115004794983-Audio-transcription-for-cloud-recordings)
+
+3. Zoom: Export the meeting transcript as a .vtt file. How to do it? [Check it out here](https://support.microsoft.com/en-us/office/view-live-transcription-in-a-teams-meeting-dc1a8f23-2e20-4684-885e-2152e06a4a8b)
+
 ### References
 
 1. https://blog.devgenius.io/creating-meeting-minutes-using-openai-gpt-3-api-f79e5fc15eb1
